@@ -27,3 +27,48 @@ jobs:
         run: npm run typecheck
       - name: Tests
         run: npm test
+
+  docker:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Smoke-test project
+        run: |
+          mkdir -p smoke/project smoke/out
+          cat > smoke/project/index.html <<'HTML'
+          <!doctype html><html><head></head><body>
+          <div data-composition data-width="320" data-height="180" data-fps="10" data-duration="2" data-background="#123">
+            <h1 data-start="0" data-enter="fade-up 0.5" style="color:#fff;margin:40px">Docker</h1>
+          </div></body></html>
+          HTML
+          chmod -R a+rwX smoke
+      - name: Build Cloud Run image
+        run: docker build -f packages/gcp-cloud-run/Dockerfile -t hfr-render .
+      - name: Render inside the Cloud Run container
+        run: |
+          docker run -d --name run -p 8080:8080 -e HFR_ALLOW_FILE_STORAGE=1 -v "$PWD/smoke:/smoke" hfr-render
+          for i in $(seq 1 30); do curl -sf localhost:8080/healthz && break; sleep 1; done
+          curl -sf -X POST localhost:8080/render -H 'content-type: application/json' \
+            -d '{"project":"file:///smoke/project/","output":"file:///smoke/out/run.mp4","options":{"quality":"draft"}}' | tee run.json
+          docker logs run | tail -20
+          grep -q '"frames":20' run.json
+          test -s smoke/out/run.mp4
+      - name: Build Lambda image
+        run: docker build -f packages/aws-lambda/Dockerfile -t hfr-lambda .
+      - name: Invoke the Lambda image through the AWS Runtime Interface Emulator
+        run: |
+          mkdir -p rie && curl -sSfL -o rie/aws-lambda-rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie && chmod +x rie/aws-lambda-rie
+          docker run -d --name lambda -p 9000:8080 -e HFR_ALLOW_FILE_STORAGE=1 -v "$PWD/smoke:/smoke" -v "$PWD/rie:/rie" \
+            --entrypoint /rie/aws-lambda-rie hfr-lambda \
+            node /opt/ric/node_modules/aws-lambda-ric/bin/index.mjs packages/aws-lambda/src/lambda.handler
+          sleep 3
+          curl -sf -X POST localhost:9000/2015-03-31/functions/function/invocations \
+            -d '{"project":"file:///smoke/project/","output":"file:///smoke/out/lambda.mp4","options":{"quality":"draft"}}' | tee lambda.json
+          docker logs lambda | tail -20
+          grep -q '"frames":20' lambda.json
+          test -s smoke/out/lambda.mp4
+      - name: Check outputs
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+          for f in smoke/out/run.mp4 smoke/out/lambda.mp4; do ffprobe -v error -show_entries stream=codec_name,width,height,nb_frames -of csv "$f"; done
