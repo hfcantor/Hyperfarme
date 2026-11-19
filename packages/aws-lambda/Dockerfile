@@ -8,14 +8,15 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/task
+# The browser location must be the same at install time and at run time.
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 COPY package.json package-lock.json tsconfig.json ./
 COPY packages ./packages
 RUN npm ci --omit=dev --workspaces --include-workspace-root \
  && npx playwright-core install --with-deps chromium \
  && npm install --no-save aws-lambda-ric@3.3.0
 
-ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright HOME=/tmp
-# Lambda only allows writes to /tmp: keep caches there
-ENV HFR_CACHE_DIR=/tmp/hfr-cache
+# Lambda only allows writes to /tmp: keep HOME and caches there
+ENV HOME=/tmp HFR_CACHE_DIR=/tmp/hfr-cache
 ENTRYPOINT ["npx", "aws-lambda-ric"]
 CMD ["packages/aws-lambda/src/lambda.handler"]
