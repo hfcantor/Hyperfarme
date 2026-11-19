@@ -14,7 +14,7 @@ transições, renderização determinística em MP4/WebM/MOV/GIF, Studio web, CL
 Requisitos: **Node.js ≥ 22.18** (executa TypeScript diretamente), **FFmpeg/FFprobe** e **Chromium** (Playwright).
 
 ```bash
-cd hyperframes
+git clone https://github.com/hfcantor/Hyperfarme.git && cd Hyperfarme
 npm install
 npx playwright-core install chromium     # se o Chromium ainda não estiver instalado
 npx hfr doctor                            # verifica FFmpeg, codecs, Chromium/WebGL, TTS, chaves
