@@ -49,6 +49,8 @@ export interface RenderOptions {
   range?: { start: number; end: number };
   /** Captions file to embed as a soft subtitle track (MP4: mov_text, WebM: WebVTT). */
   subtitles?: string;
+  /** Normalise the mix to this integrated loudness (LUFS), e.g. -14. Defaults to the manifest's output.loudness. */
+  loudness?: number;
   /** Continue even if the runtime reported errors. */
   allowErrors?: boolean;
   browser?: Browser;
@@ -255,7 +257,7 @@ export async function renderProject(o: RenderOptions): Promise<RenderResult> {
     }
     await mkdir(path.dirname(path.resolve(o.output)), { recursive: true });
     const output = path.resolve(o.output);
-    const mix = finalEnc.audio ? buildAudioMix(tracks, total, plans.length) : null;
+    const mix = finalEnc.audio ? buildAudioMix(tracks, total, plans.length, { loudness: o.loudness ?? project.manifest.output?.loudness }) : null;
     const subtitles = o.subtitles ?? (project.manifest.captions?.embed ? safeJoin(project.root, project.manifest.captions.src) : undefined);
     const subtitleIndex = plans.length + (mix ? tracks.filter((t) => t.duration > 0 && t.start < total && t.volume > 0).length : 0);
 

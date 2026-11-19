@@ -25,7 +25,8 @@
     "packages/*/src/**/*.ts",
     "packages/*/test/**/*.ts",
     "packages/*/bin/**/*.ts",
-    "packages/*/examples/**/*.ts"
+    "packages/*/examples/**/*.ts",
+    "examples/**/*.ts"
   ],
   "exclude": [
     "**/fixtures/**",

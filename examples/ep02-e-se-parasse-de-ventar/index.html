@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>E SE...? EP02 — E se parasse de ventar no mundo?</title>
+  <script src="/__hf/lib/gsap.js"></script>
+  <style>
+    @font-face{font-family:Anton;src:url(assets/fonts/anton-latin-400-normal.woff2) format("woff2");font-display:block}
+    @font-face{font-family:Montserrat;font-weight:800;src:url(assets/fonts/montserrat-latin-800-normal.woff2) format("woff2");font-display:block}
+    @font-face{font-family:Montserrat;font-weight:900;src:url(assets/fonts/montserrat-latin-900-normal.woff2) format("woff2");font-display:block}
+    #stage{font-family:Montserrat,system-ui,sans-serif;color:#f4f4f8}
+    .scene{position:absolute;inset:0;overflow:hidden}
+    .scene svg.art{position:absolute;inset:0;width:100%;height:100%}
+    .big{font-family:Anton,Impact,sans-serif;text-transform:uppercase;line-height:.95;text-align:center;letter-spacing:.01em}
+    .gold{color:#ffc83d}.blue{color:#5ec8ff}.red{color:#ff4d4d}.green{color:#6be37a}
+    .tag{position:absolute;top:150px;left:50%;translate:-50% 0;padding:14px 30px;border-radius:999px;background:rgba(5,6,12,.72);font:800 34px Montserrat;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;border:2px solid rgba(255,200,61,.6)}
+    .badge{position:absolute;top:70px;left:50%;translate:-50% 0;font:900 30px Montserrat;letter-spacing:.18em;color:#ffc83d;white-space:nowrap;text-shadow:0 3px 12px rgba(0,0,0,.5)}
+    .card{position:absolute;left:90px;right:90px;padding:40px;border-radius:40px;background:rgba(5,6,12,.78);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+    .vignette{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 45%,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+    [data-hf-captions]{top:1290px;bottom:auto !important;left:60px;right:60px;font:900 76px/1.08 Montserrat;text-transform:uppercase;--hf-cap-active:#ffffff;--hf-cap-color:#fff;text-shadow:0 5px 0 rgba(0,0,0,.55),0 8px 30px rgba(0,0,0,.6)}
+    [data-hf-captions] .hf-cap-word[data-word="ventar"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="mundo"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="inteiro"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="tabocal"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="estranho"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="parou"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="imovel"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="nenhuma"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="pipas"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="despencaram"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="silencio"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="turbinas"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="pararam"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="dez"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="cento"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="calor"]{color:#ff9a1f}
+[data-hf-captions] .hf-cap-word[data-word="preso"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="fumaca"]{color:#ff9a1f}
+[data-hf-captions] .hf-cap-word[data-word="like"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="segue"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="pior"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="vento"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="umidade"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="oceano"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="nuvens"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="chuva"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="sumiu"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="milho"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="trigo"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="arroz"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="falhar"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="equador"]{color:#ff9a1f}
+[data-hf-captions] .hf-cap-word[data-word="polos"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="fervendo"]{color:#ff4d4d}
+[data-hf-captions] .hf-cap-word[data-word="congelando"]{color:#5ec8ff}
+[data-hf-captions] .hf-cap-word[data-word="calma"]{color:#6be37a}
+[data-hf-captions] .hf-cap-word[data-word="sol"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="desigual"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="tranquilo"]{color:#6be37a}
+[data-hf-captions] .hf-cap-word[data-word="sobreviveria"]{color:#ffc83d}
+[data-hf-captions] .hf-cap-word[data-word="comenta"]{color:#5ec8ff}
+  </style>
+</head>
+<body>
+  <div id="stage" data-composition data-width="1080" data-height="1920" data-fps="30" data-duration="94.434" data-background="#05060c">
+
+    <section id="abertura" class="scene" data-name="abertura" data-start="0" data-end="5.868" data-enter="none" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#3d8fe0 0%,#86c4f2 55%,#d9f0ff 100%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <g id="ab-clouds">
+  <g class="" transform="translate(200 380) scale(1.1)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(820 640) scale(0.9)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(380 980) scale(0.7)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(900 1180) scale(1.2)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g></g>
+        <g id="ab-streaks" stroke="rgba(255,255,255,.75)" stroke-width="8" stroke-linecap="round">
+          <line x1="0" y1="260" x2="180" y2="260"/><line x1="157" y1="365" x2="397" y2="365"/><line x1="314" y1="470" x2="614" y2="470"/><line x1="471" y1="575" x2="651" y2="575"/><line x1="628" y1="680" x2="868" y2="680"/><line x1="785" y1="785" x2="1085" y2="785"/><line x1="42" y1="890" x2="222" y2="890"/><line x1="199" y1="995" x2="439" y2="995"/><line x1="356" y1="1100" x2="656" y2="1100"/><line x1="513" y1="1205" x2="693" y2="1205"/><line x1="670" y1="1310" x2="910" y2="1310"/><line x1="827" y1="1415" x2="1127" y2="1415"/><line x1="84" y1="1520" x2="264" y2="1520"/><line x1="241" y1="1625" x2="481" y2="1625"/>
+        </g>
+      </svg>
+      <div class="vignette"></div>
+      <div class="badge">HISTÓRIAS DO TABOCAL</div>
+      <div id="ab-ese" class="big gold" style="position:absolute;top:470px;width:100%;font-size:230px;-webkit-text-stroke:8px #5a3a00;paint-order:stroke fill;text-shadow:0 12px 0 #8a5a00,0 30px 60px rgba(0,0,0,.45)">E SE...?</div>
+      <div id="ab-title" class="big" style="position:absolute;top:790px;left:70px;right:70px;padding:34px 20px 40px;border-radius:44px;background:rgba(5,6,12,.72);font-size:118px;color:#fff;box-shadow:0 24px 60px rgba(0,0,0,.35)">PARASSE DE <span class="blue">VENTAR</span><br>NO MUNDO?</div>
+    </section>
+
+    <section id="tabocal" class="scene" data-name="tabocal" data-start="5.418" data-end="18.078" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#2f6db3 0%,#f2a35e 62%,#ffd98a 100%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <circle cx="820" cy="520" r="110" fill="#ffe9a8"/><circle cx="820" cy="520" r="170" fill="rgba(255,233,168,.25)"/>
+        <g id="tb-clouds">
+  <g class="" transform="translate(260 360) scale(0.8)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(700 260) scale(0.6)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g></g>
+        <path d="M0 1180 Q300 1050 600 1150 T1080 1120 L1080 1920 L0 1920 Z" fill="#4c9a4a"/>
+        <path d="M0 1320 Q350 1220 700 1300 T1080 1280 L1080 1920 L0 1920 Z" fill="#3a7d3b"/>
+        <g transform="translate(640 1000)"><rect x="0" y="80" width="300" height="200" fill="#f1d7a8"/><path d="M-30 90 L150 -20 L330 90 Z" fill="#c4492f"/><rect x="120" y="170" width="70" height="110" fill="#7a4a24"/><rect x="30" y="130" width="60" height="55" fill="#7cc6ff"/></g>
+        <g id="tb-tree" transform="translate(170 1180)"><rect x="-18" y="-40" width="36" height="200" fill="#6b4226"/><g id="tb-leaves"><circle cx="0" cy="-120" r="110" fill="#2f7d32"/><circle cx="-70" cy="-60" r="70" fill="#38913b"/><circle cx="75" cy="-70" r="75" fill="#2a6f2d"/></g></g>
+        <line x1="330" y1="1150" x2="620" y2="1150" stroke="#555" stroke-width="5"/><rect x="322" y="1140" width="14" height="190" fill="#7a4a24"/><rect x="612" y="1140" width="14" height="190" fill="#7a4a24"/>
+        <g id="tb-cloth1" transform="translate(390 1150)"><path d="M-40 0 L40 0 L48 120 L-48 120 Z" fill="#ff4d4d"/></g>
+        <g id="tb-cloth2" transform="translate(480 1150)"><path d="M-30 0 L30 0 L30 150 L-30 150 Z" fill="#5ec8ff"/></g>
+        <g id="tb-cloth3" transform="translate(565 1150)"><path d="M-38 0 L38 0 L30 95 L-30 95 Z" fill="#ffc83d"/></g>
+        
+  <g transform="translate(880 1260) scale(1)">
+    <rect x="-6" y="0" width="12" height="420" rx="6" fill="#7a4a24"/>
+    <g id="tb-pin">
+      <path d="M0 0 L0 -120 Q60 -90 0 0" fill="#ff4d4d"/><path d="M0 0 L120 0 Q90 60 0 0" fill="#ffc83d"/>
+      <path d="M0 0 L0 120 Q-60 90 0 0" fill="#5ec8ff"/><path d="M0 0 L-120 0 Q-90 -60 0 0" fill="#6be37a"/>
+      <circle r="14" fill="#fff"/>
+    </g>
+  </g>
+        
+  <g transform="translate(520 1440) scale(-1.25 1.25)">
+    <ellipse cx="0" cy="250" rx="70" ry="14" fill="rgba(0,0,0,.25)"/>
+    <rect x="-34" y="150" width="26" height="100" rx="12" fill="#2b3a67"/><rect x="8" y="150" width="26" height="100" rx="12" fill="#2b3a67"/>
+    <rect x="-48" y="40" width="96" height="125" rx="40" fill="#ff7a3d"/>
+    <rect x="-70" y="55" width="26" height="90" rx="13" fill="#e8b28a" transform="rotate(12 -57 60)"/>
+    <rect x="44" y="55" width="26" height="90" rx="13" fill="#e8b28a" transform="rotate(-25 57 60)"/>
+    <circle cx="0" cy="0" r="52" fill="#e8b28a"/>
+    <path d="M-56 -8 Q-50 -62 0 -62 Q52 -62 58 -10 L-56 -10 Z" fill="#1f6f43"/><rect x="0" y="-18" width="78" height="14" rx="7" fill="#1f6f43"/>
+    <circle cx="16" cy="4" r="6" fill="#222"/><circle cx="-14" cy="4" r="6" fill="#222"/>
+    <path d="M-10 26 Q2 34 14 26" stroke="#7a3b2a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+      </svg>
+      <div class="vignette"></div>
+      <div class="tag" id="tb-tag">TABOCAL · 15H</div>
+      <div id="tb-stop" class="big red" style="position:absolute;top:290px;width:100%;font-size:170px;opacity:0;text-shadow:0 10px 0 rgba(0,0,0,.35)">PAROU.</div>
+    </section>
+
+    <section id="pipas" class="scene" data-name="pipas" data-start="17.628" data-end="23.978" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#3d8fe0 0%,#86c4f2 55%,#d9f0ff 100%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        
+  <g class="pp-kite" transform="translate(260 330)">
+    <path d="M0 -90 L60 0 L0 110 L-60 0 Z" fill="#ff4d4d"/><path d="M0 -90 L0 110 M-60 0 L60 0" stroke="rgba(0,0,0,.25)" stroke-width="4"/>
+    <path d="M0 110 Q20 160 -10 210 Q-30 260 10 310" stroke="#fff" stroke-width="5" fill="none"/>
+  </g>
+  <g class="pp-kite" transform="translate(560 220)">
+    <path d="M0 -90 L60 0 L0 110 L-60 0 Z" fill="#ffc83d"/><path d="M0 -90 L0 110 M-60 0 L60 0" stroke="rgba(0,0,0,.25)" stroke-width="4"/>
+    <path d="M0 110 Q20 160 -10 210 Q-30 260 10 310" stroke="#fff" stroke-width="5" fill="none"/>
+  </g>
+  <g class="pp-kite" transform="translate(850 400)">
+    <path d="M0 -90 L60 0 L0 110 L-60 0 Z" fill="#6be37a"/><path d="M0 -90 L0 110 M-60 0 L60 0" stroke="rgba(0,0,0,.25)" stroke-width="4"/>
+    <path d="M0 110 Q20 160 -10 210 Q-30 260 10 310" stroke="#fff" stroke-width="5" fill="none"/>
+  </g>
+        <path d="M0 1450 Q540 1330 1080 1450 L1080 1920 L0 1920 Z" fill="#4c9a4a"/>
+        <g transform="translate(540 1430)"><path d="M-70 0 L-45 -330 L45 -330 L70 0 Z" fill="#d8c3a0"/><path d="M-55 -330 L0 -400 L55 -330 Z" fill="#8a4b2a"/>
+          <g id="pp-mill" transform="translate(0 -320)"><rect x="-14" y="-270" width="28" height="270" fill="#f4efe6"/><rect x="-14" y="-270" width="28" height="270" fill="#f4efe6" transform="rotate(90)"/><rect x="-14" y="-270" width="28" height="270" fill="#f4efe6" transform="rotate(180)"/><rect x="-14" y="-270" width="28" height="270" fill="#f4efe6" transform="rotate(270)"/><circle r="22" fill="#5a3a22"/></g></g>
+      </svg>
+      <div class="vignette"></div>
+      <div class="tag" >AS PIPAS CAÍRAM</div>
+    </section>
+
+    <section id="turbinas" class="scene" data-name="turbinas" data-start="23.528" data-end="31.586" data-enter="fade 0.45" >
+      <div id="tu-sky" style="position:absolute;inset:0;background:linear-gradient(180deg,#a9c7e6,#e6eef6)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <path d="M0 1300 Q540 1180 1080 1300 L1080 1920 L0 1920 Z" fill="#9db58a"/>
+        
+  <g transform="translate(200 820) scale(0.8)">
+    <path d="M-10 0 L10 0 L16 520 L-16 520 Z" fill="#eef3f8"/>
+    <g id="tu-1"><circle r="16" fill="#fff"/>
+      <path d="M-7 0 L0 -260 L7 0 Z" fill="#fff"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(120)"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(240)"/>
+    </g>
+  </g>
+  <g transform="translate(520 700) scale(1.05)">
+    <path d="M-10 0 L10 0 L16 520 L-16 520 Z" fill="#eef3f8"/>
+    <g id="tu-2"><circle r="16" fill="#fff"/>
+      <path d="M-7 0 L0 -260 L7 0 Z" fill="#fff"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(120)"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(240)"/>
+    </g>
+  </g>
+  <g transform="translate(860 860) scale(0.75)">
+    <path d="M-10 0 L10 0 L16 520 L-16 520 Z" fill="#eef3f8"/>
+    <g id="tu-3"><circle r="16" fill="#fff"/>
+      <path d="M-7 0 L0 -260 L7 0 Z" fill="#fff"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(120)"/><path d="M-7 0 L0 -260 L7 0 Z" fill="#fff" transform="rotate(240)"/>
+    </g>
+  </g>
+      </svg>
+      <div class="card" style="top:240px">
+        <div id="tu-num" class="big gold" style="font-size:190px">+10%</div>
+        <div style="font:900 44px Montserrat;margin-top:10px">DA ELETRICIDADE DO BRASIL<br>VEM DO VENTO</div>
+      </div>
+      <div id="tu-dark" style="position:absolute;inset:0;background:#05060c;opacity:0"></div>
+    </section>
+
+    <section id="calor" class="scene" data-name="calor" data-start="31.136" data-end="37.994" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#ff8a3d 0%,#ffbf69 55%,#ffe0a3 100%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <circle id="ca-sun" cx="540" cy="560" r="170" fill="#fff3c4"/><circle cx="540" cy="560" r="260" fill="rgba(255,243,196,.3)"/>
+        <g fill="#3b2a3f"><rect x="-10" y="1240" width="70" height="760"/><rect x="90" y="1143" width="107" height="857"/><rect x="190" y="1046" width="84" height="954"/><rect x="290" y="949" width="121" height="1051"/><rect x="390" y="852" width="98" height="1148"/><rect x="490" y="1175" width="75" height="825"/><rect x="590" y="1078" width="112" height="922"/><rect x="690" y="981" width="89" height="1019"/><rect x="790" y="884" width="126" height="1116"/><rect x="890" y="1207" width="103" height="793"/><rect x="990" y="1110" width="80" height="890"/></g>
+        <g transform="translate(900 820)"><rect x="-30" y="0" width="60" height="420" rx="30" fill="#fff"/><circle cx="0" cy="440" r="56" fill="#ff4d4d"/><rect id="ca-merc" x="-14" y="120" width="28" height="320" rx="14" fill="#ff4d4d"/></g>
+      </svg>
+      <canvas data-hf-particles="dust" data-count="160" data-colors="#fff3c4,#ffd18a" data-seed="4" data-start="calor.start" data-end="calor.end" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div id="ca-smog" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,70,60,0) 0%,rgba(90,70,60,.75) 70%);opacity:0"></div>
+      <div class="tag" >CALOR PRESO</div>
+    </section>
+
+    <section id="chamada" class="scene" data-name="chamada" data-start="37.544" data-end="43.872" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 40%,#1b2a55,#05060c 75%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920"><g id="ch-heart" transform="translate(540 640)"><path d="M0 120 C-220 -20 -180 -220 -40 -200 C0 -195 0 -150 0 -150 C0 -150 0 -195 40 -200 C180 -220 220 -20 0 120 Z" fill="#ff4d4d" transform="scale(1.6)"/></g></svg>
+      <div id="ch-text" class="big" style="position:absolute;top:960px;width:100%;font-size:120px">CURTE E <span class="gold">SEGUE</span></div>
+      <div style="position:absolute;top:1110px;width:100%;text-align:center;font:900 48px Montserrat;color:#ffc83d">@historiasdotabocal</div>
+    </section>
+
+    <section id="umidade" class="scene" data-name="umidade" data-start="43.422" data-end="48.494" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#5aa6e6,#cfe8fb)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <path d="M0 900 L0 1920 L430 1920 Q470 1500 380 1250 Q330 1080 440 900 Z" fill="#1f6fb2"/>
+        <path d="M440 900 Q330 1080 380 1250 Q470 1500 430 1920 L1080 1920 L1080 900 Z" fill="#6aa84f"/>
+        <path d="M0 1000 Q60 980 120 1000 T240 1000" stroke="rgba(255,255,255,.5)" stroke-width="6" fill="none"/>
+        <g id="um-clouds">
+  <g class="" transform="translate(180 700) scale(0.9)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(320 560) scale(0.6)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g></g>
+        <g id="um-arrows" stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none">
+          <path class="um-a" d="M150 820 Q480 700 880 820" stroke-dasharray="40 30"/>
+          <path class="um-a" d="M120 1000 Q520 900 950 1050" stroke-dasharray="40 30"/>
+        </g>
+        <g id="um-drops" fill="#5ec8ff"><path transform="translate(180 780)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(210 840)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(240 900)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(270 780)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(300 840)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(330 900)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(360 780)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/><path transform="translate(390 840)" d="M0 -22 Q16 0 0 12 Q-16 0 0 -22 Z"/></g>
+        <text x="200" y="1500" font-family="Anton" font-size="80" fill="#fff">OCEANO</text>
+        <text x="620" y="1500" font-family="Anton" font-size="80" fill="#fff">CONTINENTE</text>
+      </svg>
+      <div class="tag" >O VENTO LEVA A UMIDADE</div>
+    </section>
+
+    <section id="seca" class="scene" data-name="seca" data-start="48.044" data-end="54.086" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#f0a35e,#f7d9a0)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <circle cx="820" cy="430" r="140" fill="#fff3c4"/>
+        <rect x="0" y="880" width="330" height="1040" fill="#1f6fb2"/>
+        <g id="se-clouds">
+  <g class="" transform="translate(170 640) scale(0.9)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g>
+  <g class="" transform="translate(120 470) scale(0.6)"><ellipse cx="0" cy="0" rx="110" ry="55" fill="#fff"/><ellipse cx="-80" cy="20" rx="80" ry="45" fill="#fff"/><ellipse cx="90" cy="20" rx="85" ry="45" fill="#fff"/><ellipse cx="10" cy="-35" rx="70" ry="50" fill="#fff"/></g></g>
+        <g id="se-rain" stroke="#9fd6ff" stroke-width="5"><line x1="80" y1="720" x2="70" y2="800"/><line x1="102" y1="750" x2="92" y2="830"/><line x1="124" y1="780" x2="114" y2="860"/><line x1="146" y1="720" x2="136" y2="800"/><line x1="168" y1="750" x2="158" y2="830"/><line x1="190" y1="780" x2="180" y2="860"/><line x1="212" y1="720" x2="202" y2="800"/><line x1="234" y1="750" x2="224" y2="830"/><line x1="256" y1="780" x2="246" y2="860"/><line x1="278" y1="720" x2="268" y2="800"/></g>
+        <rect x="330" y="880" width="750" height="1040" fill="#b88a55"/>
+        <g id="se-cracks" stroke="#5a3d22" stroke-width="7" fill="none" stroke-linecap="round">
+          <path d="M420 1000 L520 1110 L500 1250 L620 1360 L600 1520" pathLength="1"/>
+          <path d="M700 960 L760 1090 L900 1150 L940 1300 L1060 1380" pathLength="1"/>
+          <path d="M520 1110 L640 1080 L760 1090" pathLength="1"/><path d="M620 1360 L780 1420 L940 1300" pathLength="1"/>
+          <path d="M600 1520 L720 1640 L700 1800" pathLength="1"/><path d="M780 1420 L860 1600 L1000 1660" pathLength="1"/>
+        </g>
+      </svg>
+      <div class="tag" >A CHUVA SUMIU</div>
+    </section>
+
+    <section id="colheita" class="scene" data-name="colheita" data-start="53.636" data-end="60.926" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#f5b26b,#fde3b0)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <rect x="0" y="1300" width="1080" height="620" fill="#a8753f"/>
+        <g class="co-plant" transform="translate(90 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(240 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(390 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(540 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(690 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(840 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g><g class="co-plant" transform="translate(990 1320)"><g class="co-stalk"><rect x="-8" y="-560" width="16" height="560" fill="#3f8f3a"/><path d="M0 -200 Q-120 -260 -150 -180" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -320 Q120 -380 150 -300" stroke="#4aa043" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 -440 Q-110 -500 -130 -420" stroke="#4aa043" stroke-width="20" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="-360" rx="20" ry="60" fill="#f2c94c"/><path d="M0 -560 L-30 -640 M0 -560 L0 -650 M0 -560 L30 -640" stroke="#e8d27a" stroke-width="8"/></g></g>
+      </svg>
+      <canvas data-hf-particles="stars" data-count="50" data-colors="#fff1a8" data-seed="9" data-start="colheita.start" data-end="colheita.end" style="position:absolute;left:0;right:0;top:600px;height:700px;width:100%"></canvas>
+      <div class="tag" >SEM VENTO, SEM PÓLEN</div>
+    </section>
+
+    <section id="planeta" class="scene" data-name="planeta" data-start="60.476" data-end="69.798" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 42%,#0d1a3a,#05060c 80%)"></div>
+      <canvas data-hf-particles="stars" data-count="160" data-colors="#ffffff" data-seed="2" data-start="planeta.start" data-end="planeta.end" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div id="pl-earth" style="position:absolute;left:190px;top:420px;width:700px;height:700px;border-radius:50%;background:linear-gradient(180deg,#e9f6ff 0%,#5ec8ff 24%,#2f7fbf 38%,#ff9a1f 46%,#ff4d4d 50%,#ff9a1f 54%,#2f7fbf 62%,#5ec8ff 76%,#e9f6ff 100%);box-shadow:0 0 120px rgba(94,200,255,.35),inset -60px -40px 120px rgba(0,0,0,.45)"></div>
+      <div id="pl-hot" style="position:absolute;left:190px;top:700px;width:700px;height:140px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,77,77,.9),transparent);filter:blur(10px);opacity:0"></div>
+      <div id="pl-l1" class="big red" style="position:absolute;top:740px;left:0;width:100%;font-size:70px;opacity:0;text-shadow:0 6px 20px #000">FERVENDO</div>
+      <div id="pl-l2" class="big blue" style="position:absolute;top:300px;left:0;width:100%;font-size:70px;opacity:0;text-shadow:0 6px 20px #000">CONGELANDO</div>
+      <div id="pl-l3" class="big blue" style="position:absolute;top:1150px;left:0;width:100%;font-size:70px;opacity:0;text-shadow:0 6px 20px #000">CONGELANDO</div>
+    </section>
+
+    <section id="calma" class="scene" data-name="calma" data-start="69.348" data-end="84.178" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#3d8fe0 0%,#86c4f2 55%,#d9f0ff 100%)"></div>
+      <svg class="art" viewBox="0 0 1080 1920">
+        <g id="cm-sun" transform="translate(540 420)"><circle r="130" fill="#ffe27a"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(0)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(30)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(60)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(90)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(120)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(150)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(180)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(210)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(240)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(270)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(300)"/><rect x="-8" y="-230" width="16" height="60" rx="8" fill="#ffe27a" transform="rotate(330)"/></g>
+        <g id="cm-wind" stroke="rgba(255,255,255,.85)" stroke-width="10" stroke-linecap="round" fill="none">
+          <path d="M80 760 Q300 700 520 760 T960 760"/><path d="M40 880 Q260 820 480 880 T900 880"/><path d="M140 1000 Q360 940 580 1000 T1000 1000"/>
+        </g>
+        <path d="M0 1260 Q300 1150 600 1240 T1080 1210 L1080 1920 L0 1920 Z" fill="#4c9a4a"/>
+        <g id="cm-kite">
+  <g class="" transform="translate(760 640)">
+    <path d="M0 -90 L60 0 L0 110 L-60 0 Z" fill="#ff4d4d"/><path d="M0 -90 L0 110 M-60 0 L60 0" stroke="rgba(0,0,0,.25)" stroke-width="4"/>
+    <path d="M0 110 Q20 160 -10 210 Q-30 260 10 310" stroke="#fff" stroke-width="5" fill="none"/>
+  </g></g>
+        <path id="cm-string" d="M760 750 Q640 1050 470 1330" stroke="#fff" stroke-width="4" fill="none"/>
+        
+  <g transform="translate(250 1180) scale(0.9)">
+    <rect x="-6" y="0" width="12" height="420" rx="6" fill="#7a4a24"/>
+    <g id="cm-pin">
+      <path d="M0 0 L0 -120 Q60 -90 0 0" fill="#ff4d4d"/><path d="M0 0 L120 0 Q90 60 0 0" fill="#ffc83d"/>
+      <path d="M0 0 L0 120 Q-60 90 0 0" fill="#5ec8ff"/><path d="M0 0 L-120 0 Q-90 -60 0 0" fill="#6be37a"/>
+      <circle r="14" fill="#fff"/>
+    </g>
+  </g>
+        
+  <g transform="translate(470 1420) scale(1.2 1.2)">
+    <ellipse cx="0" cy="250" rx="70" ry="14" fill="rgba(0,0,0,.25)"/>
+    <rect x="-34" y="150" width="26" height="100" rx="12" fill="#2b3a67"/><rect x="8" y="150" width="26" height="100" rx="12" fill="#2b3a67"/>
+    <rect x="-48" y="40" width="96" height="125" rx="40" fill="#ff7a3d"/>
+    <rect x="-70" y="55" width="26" height="90" rx="13" fill="#e8b28a" transform="rotate(12 -57 60)"/>
+    <rect x="44" y="55" width="26" height="90" rx="13" fill="#e8b28a" transform="rotate(-25 57 60)"/>
+    <circle cx="0" cy="0" r="52" fill="#e8b28a"/>
+    <path d="M-56 -8 Q-50 -62 0 -62 Q52 -62 58 -10 L-56 -10 Z" fill="#1f6f43"/><rect x="0" y="-18" width="78" height="14" rx="7" fill="#1f6f43"/>
+    <circle cx="16" cy="4" r="6" fill="#222"/><circle cx="-14" cy="4" r="6" fill="#222"/>
+    <path d="M-10 26 Q2 34 14 26" stroke="#7a3b2a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+      </svg>
+      <div id="cm-card" class="card" style="top:180px;opacity:0"><div class="big gold" style="font-size:110px">O VENTO NASCE<br>DO SOL</div></div>
+    </section>
+
+    <section id="comenta" class="scene" data-name="comenta" data-start="83.728" data-end="90.884" data-enter="fade 0.45" >
+      <div style="position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 40%,#1b2a55,#05060c 75%)"></div>
+      <div id="co-q" class="big" style="position:absolute;top:330px;width:100%;font-size:190px">E <span class="gold">VOCÊ?</span></div>
+      <svg class="art" viewBox="0 0 1080 1920"><g id="co-bubble" transform="translate(540 820)"><path d="M-300 -150 Q-300 -220 -230 -220 L230 -220 Q300 -220 300 -150 L300 90 Q300 160 230 160 L-60 160 L-170 260 L-150 160 L-230 160 Q-300 160 -300 90 Z" fill="#5ec8ff"/><circle cx="-120" cy="-30" r="34" fill="#05060c"/><circle cx="0" cy="-30" r="34" fill="#05060c"/><circle cx="120" cy="-30" r="34" fill="#05060c"/></g></svg>
+      <div id="co-cta" class="big" style="position:absolute;top:1110px;width:100%;font-size:110px">COMENTA <span class="blue">AÍ!</span></div>
+    </section>
+
+    <section id="final" class="scene" data-name="final" data-start="90.434" data-end="94.434" data-enter="zoom-out 0.7 out-expo" >
+      <div style="position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 35%,#2a1f4a,#05060c 75%)"></div>
+      <canvas data-hf-particles="confetti" data-count="120" data-colors="#ffc83d,#ff4d4d,#5ec8ff,#6be37a" data-seed="5" data-start="final.start" data-end="final.end" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div class="big gold" id="fi-logo" style="position:absolute;top:470px;width:100%;font-size:150px;text-shadow:0 10px 0 #8a5a00">HISTÓRIAS<br>DO TABOCAL</div>
+      <div id="fi-q" style="position:absolute;top:860px;width:100%;text-align:center;font:900 56px Montserrat">Gostou dessa história?</div>
+      <div id="fi-cta" class="big" style="position:absolute;top:1010px;left:60px;right:60px;font-size:92px"><span class="red">CURTA</span> · <span class="blue">COMENTE</span><br>E <span class="gold">SIGA O PERFIL!</span></div>
+      <div style="position:absolute;top:1300px;width:100%;text-align:center;font:900 46px Montserrat;color:#ffc83d">@historiasdotabocal</div>
+    </section>
+
+    <div data-hf-captions="captions.json" data-style="pop" data-max-words="4" data-max-chars="26" data-start="0" data-end="90.434" data-track="90"></div>
+  </div>
+
+<script>
+  // Cada timeline é registrada no início da sua cena: os tempos abaixo são relativos à cena.
+  const T = (id) => document.getElementById(id);
+  const reg = (scene, build) => { const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.out' } }); build(tl); hf.register(tl, { start: scene }); };
+
+  reg('abertura', (tl) => {
+    tl.from('#ab-ese', { scale: 1.9, duration: 0.6, ease: 'back.out(1.6)' }, 0) // visível já no 1º quadro (capa)
+      .from('#ab-title', { y: 80, opacity: 0, duration: 0.6 }, 2.2)
+      .fromTo('#ab-streaks line', { x: -400 }, { x: 900, duration: 1.4, ease: 'none', repeat: 4, stagger: { each: 0.08, repeat: 4 } }, 0)
+      .fromTo('#ab-clouds', { x: -120 }, { x: 160, duration: 5.868, ease: 'none' }, 0);
+  });
+
+  reg('tabocal', (tl) => {
+    const stop = 5.232;
+    tl.fromTo(['#tb-cloth1', '#tb-cloth2', '#tb-cloth3'], { rotation: -10, transformOrigin: '50% 0%' }, { rotation: 10, duration: 0.45, ease: 'sine.inOut', yoyo: true, repeat: Math.max(1, Math.floor(stop / 0.45) - 1), stagger: 0.12 }, 0)
+      .to(['#tb-cloth1', '#tb-cloth2', '#tb-cloth3'], { rotation: 0, duration: 0.8, ease: 'power2.out' }, stop)
+      .fromTo('#tb-leaves', { rotation: -3, transformOrigin: '50% 100%' }, { rotation: 3, duration: 0.6, ease: 'sine.inOut', yoyo: true, repeat: Math.max(1, Math.floor(stop / 0.6) - 1) }, 0)
+      .to('#tb-leaves', { rotation: 0, duration: 0.8 }, stop)
+      .fromTo('#tb-clouds', { x: 0 }, { x: 140, duration: stop, ease: 'none' }, 0)
+      .fromTo('#tb-stop', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(2)' }, stop + 0.1)
+      .to('#tb-stop', { opacity: 0, duration: 0.4 }, stop + 2.2);
+  });
+
+  reg('pipas', (tl) => {
+    tl.fromTo('.pp-kite', { y: 0, rotation: 0 }, { y: 1500, rotation: (i) => [-200, 160, 240][i], duration: 2.6, ease: 'power2.in', stagger: 0.35 }, 0.3)
+;
+  });
+
+  reg('turbinas', (tl) => {
+    tl.from('#turbinas .card', { y: -60, opacity: 0, duration: 0.5 }, 1.85)
+      .to('#tu-dark', { opacity: 0.35, duration: 1.2 }, 3.45);
+  });
+
+  reg('calor', (tl) => {
+    tl.fromTo('#ca-merc', { attr: { y: 360, height: 80 } }, { attr: { y: 60, height: 380 }, duration: 6.858, ease: 'power1.inOut' }, 0)
+      .to('#ca-smog', { opacity: 1, duration: 6.858, ease: 'power1.in' }, 0)
+      .fromTo('#ca-sun', { attr: { r: 150 } }, { attr: { r: 210 }, duration: 6.858, ease: 'none' }, 0);
+  });
+
+  reg('chamada', (tl) => {
+    tl.from('#ch-heart', { scale: 0, transformOrigin: '50% 50%', duration: 0.5, ease: 'back.out(2.2)' }, 0.2)
+      .to('#ch-heart', { scale: 1.12, transformOrigin: '50% 50%', duration: 0.35, yoyo: true, repeat: 7, ease: 'sine.inOut' }, 0.8)
+      .from('#ch-text', { y: 60, opacity: 0, duration: 0.5 }, 0.5);
+  });
+
+  reg('umidade', (tl) => {
+    tl.fromTo('.um-a', { strokeDashoffset: 0 }, { strokeDashoffset: -350, duration: 3, ease: 'none' }, 0)
+      .fromTo('#um-drops path', { x: 0, opacity: 1 }, { x: 640, opacity: 0.2, duration: 2.6, stagger: 0.12, ease: 'none' }, 0.2)
+      .to('#um-arrows', { opacity: 0, duration: 0.8 }, 4.572);
+  });
+
+  reg('seca', (tl) => {
+    tl.fromTo('#se-cracks path', { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.6, stagger: 0.25, ease: 'power1.inOut' }, 1.45)
+      .fromTo('#se-rain line', { y: 0 }, { y: 60, duration: 0.4, repeat: 12, ease: 'none' }, 0);
+  });
+
+  reg('colheita', (tl) => {
+    tl.to('.co-stalk', { rotation: (i) => (i % 2 ? 22 : -18), transformOrigin: '50% 100%', duration: 2.4, stagger: 0.1, ease: 'power2.in' }, 2.25)
+      .to('.co-stalk path, .co-stalk rect', { stroke: '#8a6b3a', fill: '#8a6b3a', duration: 2.4 }, 2.25);
+  });
+
+  reg('planeta', (tl) => {
+    tl.from('#pl-earth', { scale: 0.6, opacity: 0, duration: 0.8 }, 0)
+      .to('#pl-earth', { rotation: 25, duration: 9.322, ease: 'none' }, 0)
+      .to('#pl-hot', { opacity: 1, duration: 1.2 }, 3.85)
+      .to('#pl-l1', { opacity: 1, duration: 0.4 }, 4.05)
+      .to(['#pl-l2', '#pl-l3'], { opacity: 1, duration: 0.4 }, 5.25);
+  });
+
+  reg('calma', (tl) => {
+    const back = 2.75;
+    tl.fromTo('#cm-card', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5 }, back - 0.3)
+      .fromTo('#cm-wind', { opacity: 0, x: -300 }, { opacity: 1, x: 0, duration: 1.2 }, back)
+      .fromTo('#cm-kite', { y: 700, opacity: 0 }, { y: 0, opacity: 1, duration: 2.4, ease: 'power2.out' }, 8.094)
+      .fromTo('#cm-string', { opacity: 0 }, { opacity: 1, duration: 1 }, 9.294)
+      .to('#cm-kite', { rotation: 8, transformOrigin: '50% 0%', duration: 0.8, yoyo: true, repeat: 6, ease: 'sine.inOut' }, 10.494);
+  });
+
+  reg('comenta', (tl) => {
+    tl.from('#co-q', { scale: 1.8, opacity: 0, duration: 0.5, ease: 'back.out(1.8)' }, 0.1)
+      .from('#co-bubble', { scale: 0, transformOrigin: '50% 50%', duration: 0.5, ease: 'back.out(2)' }, 2.85)
+      .from('#co-cta', { y: 60, opacity: 0, duration: 0.5 }, 3.35);
+  });
+
+  // Rotações com pivô no eixo de cada peça (o grupo gira em torno da própria origem), em função do tempo.
+  const spin = (id, deg) => {
+    const el = T(id);
+    if (el.dataset.base === undefined) el.dataset.base = el.getAttribute('transform') || ''; // mantém o translate original
+    el.setAttribute('transform', el.dataset.base + ' rotate(' + deg.toFixed(2) + ')');
+  };
+  const coast = (w, tau, x) => w * tau * (1 - Math.exp(-Math.max(0, x) / tau)); // desacelera até parar
+  hf.onFrame((t) => {
+    const tb = t - 5.418, stop = 5.232;
+    spin('tb-pin', tb < stop ? 620 * tb : 620 * stop + coast(620, 0.4, tb - stop));
+    spin('pp-mill', coast(160, 1.1, t - 17.628));
+    [0, 1, 2].forEach((i) => spin('tu-' + (i + 1), i * 40 + coast(240, 0.9 + i * 0.25, t - 23.528)));
+    const cm = t - 69.348, back = 2.75;
+    const x = Math.max(0, cm - back);
+    spin('cm-pin', 520 * (x - 0.8 * (1 - Math.exp(-x / 0.8))));
+    spin('cm-sun', 6 * Math.max(0, cm));
+  });
+
+  reg('final', (tl) => {
+    tl.from('#fi-logo', { scale: 1.5, opacity: 0, duration: 0.6, ease: 'back.out(1.6)' }, 0.1)
+      .from('#fi-q', { opacity: 0, y: 30, duration: 0.5 }, 0.7)
+      .from('#fi-cta', { opacity: 0, y: 40, duration: 0.5 }, 1.1);
+  });
+</script>
+</body>
+</html>

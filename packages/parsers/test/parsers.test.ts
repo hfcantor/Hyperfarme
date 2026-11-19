@@ -64,6 +64,8 @@ test('slides markdown with directives and notes', () => {
 test('syntax checks for CSS and JS', () => {
   assert.equal(checkCss('.a{color:red}').length, 0);
   assert.ok(checkCss('.a{colr:red}').some((i) => /unknown property/.test(i.message)));
+  assert.equal(checkCss('@font-face{font-family:X;src:url(x.woff2);font-display:block;unicode-range:U+0-FF}').length, 0, '@font-face descriptors are valid');
+  assert.ok(checkCss('@media (min-width:1px){.a{colr:red}}').some((i) => /unknown property/.test(i.message)), 'still checked inside @media');
   assert.equal(checkJavaScript('const a = 1;').length, 0);
   const err = checkJavaScript('const = ;');
   assert.equal(err.length, 1);

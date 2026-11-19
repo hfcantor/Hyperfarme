@@ -1,0 +1,53 @@
+{
+  "name": "E SE...? EP02 — E se parasse de ventar no mundo?",
+  "entry": "index.html",
+  "audio": [
+    {
+      "id": "narracao",
+      "src": "assets/narracao/narration.mp3",
+      "start": 1.2,
+      "role": "narration"
+    },
+    {
+      "id": "vento",
+      "src": "assets/vento.mp3",
+      "start": 0,
+      "duration": 11.85,
+      "volume": 0.55,
+      "fadeIn": 0.5,
+      "fadeOut": 1.4,
+      "role": "sfx"
+    },
+    {
+      "id": "vento-volta",
+      "src": "assets/vento.mp3",
+      "start": 72.098,
+      "mediaStart": 10,
+      "duration": 12.08,
+      "volume": 0.35,
+      "fadeIn": 1.5,
+      "fadeOut": 1.5,
+      "role": "sfx"
+    },
+    {
+      "id": "trilha",
+      "src": "assets/trilha.mp3",
+      "start": 0,
+      "duration": 94.434,
+      "volume": 0.55,
+      "fadeIn": 1.5,
+      "fadeOut": 2.5,
+      "role": "music",
+      "duckUnder": "narration"
+    }
+  ],
+  "captions": {
+    "src": "captions.json",
+    "embed": true,
+    "language": "pt-BR"
+  },
+  "output": {
+    "file": "renders/ep02-e-se-parasse-de-ventar.mp4",
+    "loudness": -14
+  }
+}
