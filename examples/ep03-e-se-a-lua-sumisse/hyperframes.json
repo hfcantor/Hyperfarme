@@ -1,0 +1,53 @@
+{
+  "name": "E SE...? EP03 — E se a Lua sumisse?",
+  "entry": "index.html",
+  "audio": [
+    {
+      "id": "narracao",
+      "src": "assets/narracao/narration.mp3",
+      "start": 1.2,
+      "role": "narration"
+    },
+    {
+      "id": "grilos",
+      "src": "assets/grilos.mp3",
+      "start": 0,
+      "duration": 11.47,
+      "volume": 0.5,
+      "fadeIn": 0.5,
+      "fadeOut": 0.6,
+      "role": "sfx"
+    },
+    {
+      "id": "grilos-voltam",
+      "src": "assets/grilos.mp3",
+      "start": 81.114,
+      "mediaStart": 20,
+      "duration": 5.28,
+      "volume": 0.4,
+      "fadeIn": 1.5,
+      "fadeOut": 1.2,
+      "role": "sfx"
+    },
+    {
+      "id": "trilha",
+      "src": "assets/trilha.mp3",
+      "start": 0,
+      "duration": 96.77,
+      "volume": 0.55,
+      "fadeIn": 1.5,
+      "fadeOut": 2.5,
+      "role": "music",
+      "duckUnder": "narration"
+    }
+  ],
+  "captions": {
+    "src": "captions.json",
+    "embed": true,
+    "language": "pt-BR"
+  },
+  "output": {
+    "file": "renders/ep03-e-se-a-lua-sumisse.mp4",
+    "loudness": -14
+  }
+}
