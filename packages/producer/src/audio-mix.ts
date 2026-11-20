@@ -32,7 +32,12 @@ const f = (n: number) => Number(n.toFixed(6)).toString();
 /**
  * @param firstInputIndex index of the first audio input in the final ffmpeg command
  */
-export function buildAudioMix(tracks: MixTrack[], total: number, firstInputIndex: number): MixGraph | null {
+export interface MixOptions {
+  /** Target integrated loudness in LUFS (e.g. -14 for social platforms). Uses FFmpeg loudnorm (EBU R128). */
+  loudness?: number;
+}
+
+export function buildAudioMix(tracks: MixTrack[], total: number, firstInputIndex: number, o: MixOptions = {}): MixGraph | null {
   const usable = tracks.filter((t) => t.duration > 0 && t.start < total && t.volume > 0);
   if (!usable.length) return null;
   const inputs: string[] = [];
@@ -93,7 +98,10 @@ export function buildAudioMix(tracks: MixTrack[], total: number, firstInputIndex
   const outLabel = 'aout';
   chains.push(
     `${finalLabels.map((l) => `[${l}]`).join('')}amix=inputs=${finalLabels.length}:normalize=0:duration=longest:dropout_transition=0,` +
-      `apad=whole_dur=${f(total)},atrim=duration=${f(total)},alimiter=limit=0.98:level=disabled[${outLabel}]`,
+      `apad=whole_dur=${f(total)},atrim=duration=${f(total)},` +
+      (o.loudness !== undefined
+        ? `loudnorm=I=${f(o.loudness)}:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.95:level=disabled[${outLabel}]`
+        : `alimiter=limit=0.98:level=disabled[${outLabel}]`),
   );
   return { inputs, filter: chains.join(';'), outLabel };
 }

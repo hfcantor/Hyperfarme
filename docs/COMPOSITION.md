@@ -70,7 +70,7 @@ Projetos com `hyperframes.json` também aceitam trilhas globais com *ducking*:
 Formatos: `.srt`, `.vtt` (inclusive timestamps por palavra), `.json` (documento, lista de palavras ou JSON do Whisper/OpenAI),
 `.txt` (tempos distribuídos). Estilos: `karaoke`, `pop`, `highlight`, `typewriter`, `bounce`, `plain`. Variáveis CSS:
 `--hf-cap-color`, `--hf-cap-active`, `--hf-cap-upcoming`, `--hf-cap-spoken`, `--hf-cap-highlight-bg`, `--hf-cap-highlight-color`.
-Atributos: `data-offset`, `data-max-words`, `data-max-chars`, `data-pause-break`.
+Atributos: `data-offset`, `data-max-words`, `data-max-chars`, `data-pause-break`. Cada palavra recebe `data-word` normalizado (minúsculas, sem acento nem pontuação) para destacar palavras-chave com CSS: `[data-hf-captions] .hf-cap-word[data-word="vento"] { color: #ffc83d }`.
 
 ### Lottie, partículas, visualizadores, shaders
 

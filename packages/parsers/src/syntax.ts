@@ -65,8 +65,10 @@ export function checkCss(css: string, o: { declarationList?: boolean } = {}): Sy
     const ast = csstree.parse(css, { context: o.declarationList ? 'declarationList' : 'stylesheet', positions: true });
     csstree.walk(ast, {
       visit: 'Declaration',
-      enter(node: csstree.Declaration) {
+      enter(this: { atrule: csstree.Atrule | null }, node: csstree.Declaration) {
         if (node.property.startsWith('--')) return;
+        // inside @font-face, @property, @page… these are descriptors, not properties
+        if (this.atrule && this.atrule.name !== 'media' && this.atrule.name !== 'supports' && this.atrule.name !== 'container' && this.atrule.name !== 'layer') return;
         const match = csstree.lexer.matchProperty(node.property, node.value);
         const loc = node.loc?.start;
         if (match.error && /Unknown property/.test(match.error.message)) {

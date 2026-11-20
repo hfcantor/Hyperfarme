@@ -304,6 +304,9 @@ async function setupCaptions(c: Clip) {
         const s = document.createElement('span');
         s.className = 'hf-cap-word';
         s.textContent = w.text;
+        // normalised word (lowercase, no accents/punctuation) so CSS can emphasise keywords:
+        // [data-hf-captions] .hf-cap-word[data-word="vento"] { color: gold }
+        s.dataset.word = w.text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
         return s;
       });
       container.replaceChildren(...spans);

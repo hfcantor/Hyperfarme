@@ -113,7 +113,7 @@ export async function fetchProject(uri: string, adapters: StorageAdapter[]): Pro
 export interface CloudRenderRequest {
   project: string;
   output: string;
-  options?: Pick<RenderOptions, 'format' | 'width' | 'height' | 'scale' | 'fps' | 'quality' | 'crf' | 'workers' | 'range' | 'allowErrors'>;
+  options?: Pick<RenderOptions, 'format' | 'width' | 'height' | 'scale' | 'fps' | 'quality' | 'crf' | 'workers' | 'range' | 'allowErrors' | 'loudness'>;
 }
 
 export interface CloudRenderResponse {
@@ -129,7 +129,7 @@ export function validateRequest(body: unknown): CloudRenderRequest {
   if (typeof b.project !== 'string' || typeof b.output !== 'string') throw new Error('"project" and "output" URIs are required');
   parseUri(b.project);
   parseUri(b.output);
-  const allowed = ['format', 'width', 'height', 'scale', 'fps', 'quality', 'crf', 'workers', 'range', 'allowErrors'];
+  const allowed = ['format', 'width', 'height', 'scale', 'fps', 'quality', 'crf', 'workers', 'range', 'allowErrors', 'loudness'];
   for (const k of Object.keys(b.options ?? {})) if (!allowed.includes(k)) throw new Error(`unknown option "${k}"`);
   return b;
 }

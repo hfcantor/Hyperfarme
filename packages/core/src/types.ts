@@ -141,5 +141,5 @@ export interface ProjectManifest {
   scenes?: SceneDef[];
   audio?: AudioTrackDef[];
   captions?: { src: string; embed?: boolean; language?: string };
-  output?: { file?: string; format?: 'mp4' | 'webm' | 'gif' | 'mov'; crf?: number };
+  output?: { file?: string; format?: 'mp4' | 'webm' | 'gif' | 'mov'; crf?: number; /** target loudness in LUFS, e.g. -14 */ loudness?: number };
 }

@@ -104,11 +104,11 @@ const COMMANDS: Record<string, Command> = {
 
   render: {
     summary: 'render a project to MP4/WebM/MOV/GIF',
-    usage: 'hfr render [project] [-o out.mp4] [--resolution 1080p|4k|…] [--width W] [--height H] [--scale 2] [--fps 30] [--quality draft|standard|high] [--crf N] [--workers N] [--range 2:5] [--png] [--subtitles file] [--allow-errors] [--json]',
+    usage: 'hfr render [project] [-o out.mp4] [--resolution 1080p|4k|…] [--width W] [--height H] [--scale 2] [--fps 30] [--quality draft|standard|high] [--crf N] [--workers N] [--range 2:5] [--png] [--subtitles file] [--loudness -14] [--allow-errors] [--json]',
     options: {
       output: { type: 'string', short: 'o' }, resolution: { type: 'string', short: 'r' }, width: { type: 'string' }, height: { type: 'string' }, scale: { type: 'string' },
       fps: { type: 'string' }, quality: { type: 'string', short: 'q' }, crf: { type: 'string' }, workers: { type: 'string', short: 'w' }, range: { type: 'string' },
-      png: { type: 'boolean' }, subtitles: { type: 'string' }, 'allow-errors': { type: 'boolean' }, json: { type: 'boolean' }, 'keep-temp': { type: 'boolean' }, 'skip-lint': { type: 'boolean' },
+      png: { type: 'boolean' }, subtitles: { type: 'string' }, loudness: { type: 'string' }, 'allow-errors': { type: 'boolean' }, json: { type: 'boolean' }, 'keep-temp': { type: 'boolean' }, 'skip-lint': { type: 'boolean' },
     },
     async run([dir = '.'], o) {
       const project = await loadProject(dir);
@@ -129,7 +129,7 @@ const COMMANDS: Record<string, Command> = {
       if (!['draft', 'standard', 'high'].includes(quality)) throw new Error('--quality must be draft, standard or high');
       const r = await renderProject({
         project: dir, output, width: num(o.width) ?? res?.width, height: num(o.height) ?? res?.height, scale: num(o.scale), fps: num(o.fps),
-        quality, crf: num(o.crf), workers: num(o.workers), range, frameFormat: o.png ? 'png' : 'jpeg', subtitles: str(o.subtitles),
+        quality, crf: num(o.crf), workers: num(o.workers), range, frameFormat: o.png ? 'png' : 'jpeg', subtitles: str(o.subtitles), loudness: num(o.loudness),
         allowErrors: !!o['allow-errors'], keepTemp: !!o['keep-temp'], onProgress: o.json ? undefined : progressBar,
       });
       if (o.json) { json(r); return 0; }

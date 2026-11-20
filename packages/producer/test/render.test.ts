@@ -139,3 +139,15 @@ test('range, output scaling and GIF', async () => {
   const g = await renderProject({ project: p, output: path.join(dir, 'r.gif'), range: { start: 0, end: 1 }, browser });
   assert.equal(g.probe.video?.codec, 'gif');
 });
+
+test('loudness normalisation hits the target LUFS', async () => {
+  const p = await writeProject('loud', {
+    'index.html': page('<audio src="tone.wav" data-start="0" data-volume="0.3"></audio>', 'data-width="160" data-height="90" data-fps="10" data-duration="4"'),
+  });
+  await ffmpeg(['-f', 'lavfi', '-i', 'sine=f=300:d=4', path.join(p, 'tone.wav')]);
+  const r = await renderProject({ project: p, output: path.join(dir, 'loud.mp4'), loudness: -14, browser, quality: 'draft' });
+  const { stderr } = await ffmpeg(['-i', r.output, '-af', 'ebur128', '-f', 'null', '-']);
+  const all = [...stderr.matchAll(/I:\s+(-?[\d.]+) LUFS/g)];
+  const lufs = Number(all[all.length - 1]![1]);
+  assert.ok(Math.abs(lufs - -14) < 1.5, `integrated loudness ${lufs} LUFS`);
+});
